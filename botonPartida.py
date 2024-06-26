@@ -23,7 +23,7 @@ def crear_menu_inicio():
   
     elif opcion == "2":
         # Salir
-        print("Adiós!")
+        print("Cerrar partida...")
         exit()
     else:
         print("Opción inválida. Intente nuevamente.")
