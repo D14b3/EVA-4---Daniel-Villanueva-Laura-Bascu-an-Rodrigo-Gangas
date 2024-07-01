@@ -1,28 +1,27 @@
 import pymysql.cursors
 import pymysql
+from conexion import Conexion
 
 
 class Personaje():
+    def __init__(self) -> None:
+        Conexion.getConnection()
+        self.__mysql = Conexion()
 
-    def crearPj():
+    @property
+    def mysql(self):
+        return self.__mysql
+
+    def crearPj(self)-> None:
         nombre = input('Indique el nombre del personaje: ')
         raza = input(f'Indique la raza de {nombre}: ')
         nivel = 1
         estado = 'vivo'
-        connection = pymysql.connect(host='localhost',
-                                     user='root',
-                                     password='',
-                                     database='rol',
-                                     charset='utf8mb4',
-                                     cursorclass=pymysql.cursors.DictCursor)
-        with connection:
-            with connection.cursor() as cursor:
-                sql = "INSERT INTO `personaje` (`nombrePersonaje`, `raza`, `nivel`, `estado`) VALUES (%s, %s, %s, %s)"
-                cursor.execute(sql, (nombre, raza, nivel, estado))
-                connection.commit()
-                with connection.cursor() as cursor:
-                    
-                    sql = "SELECT * FROM `personaje` WHERE `nombrePersonaje`=%s"
-                    cursor.execute(sql, (nombre))
-                    result = cursor.fetchone()
-                    print(result)
+
+        sql = "INSERT INTO `personaje` (`nombrePersonaje`, `raza`, `nivel`, `estado`) VALUES (%s, %s, %s, %s)"
+        self.mysql.cursor.execute(sql, (nombre, raza, nivel, estado))
+        self.mysql.connection.commit()
+        sql = "SELECT nombrePersonaje, raza, nivel, estado FROM `personaje` WHERE `nombrePersonaje`=%s"
+        self.mysql.cursor.execute(sql, (nombre))
+        result = self.mysql.cursor.fetchone()
+        print(result)
