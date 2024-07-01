@@ -11,9 +11,9 @@ class Conexion:
     def getConnection(cls):
         try:
             if cls.connection is None or not cls.connection.open:
-                cls.connection = pymysql.connect(host='localhost', port=3306, user='admin', password='admin1234', db='juegorol')
+                cls.connection = pymysql.connect(host='localhost', port=3306, user='root', password='', db='rol')
                 cls.cursor = cls.connection.cursor()
-                print('Se estableció una nueva conexión.')
+                print('Se estableció la conexión con la base de datos.')
             else:
                 print('La conexión ya está abierta.')
         except pymysql.Error as e:
