@@ -3,4 +3,4 @@ from personaje import Personaje
 
 Conexion.getConnection()
 
-Personaje.crearPj()
+Personaje().crearPj()
