@@ -1,4 +1,5 @@
 import pymysql
+import time
 
 class Conexion:
     connection = None
@@ -14,10 +15,13 @@ class Conexion:
                 cls.connection = pymysql.connect(host='localhost', port=3306, user='root', password='', db='rol')
                 cls.cursor = cls.connection.cursor()
                 print('Se estableció la conexión con la base de datos.')
+                time.sleep(2)
             else:
                 print('La conexión ya está abierta.')
+                time.sleep(2)
         except pymysql.Error as e:
             print(f'Error al establecer la conexión: {e}')
+            time.sleep(2)
             return None
 
     @classmethod
