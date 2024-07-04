@@ -3,9 +3,12 @@ from personaje import Personaje
 from arma import Arma
 from raza import Raza
 from habilidad import Habilidad
+from poder import Poder
 
 Conexion.getConnection()
 
+
+Poder().crearPoder()
 Habilidad().crearHabilidad()
 Habilidad().crearHabilidad()
 Raza().crearRaza()
@@ -16,3 +19,4 @@ Arma().crearArma()
 Habilidad().elegirHabilidad()
 Raza().elegirRaza()
 Personaje().elegirArma()
+Poder().elegirPoder()
