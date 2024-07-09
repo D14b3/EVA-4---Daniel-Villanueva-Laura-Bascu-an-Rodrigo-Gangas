@@ -90,6 +90,7 @@ class Personaje():
         print('idPersonaje | nombrePersonaje | nivel | estado | idGM | idJugador | idHabilidad1 | idHabilidad2 | idEquipo | idArma | idPoder | idRaza')
         for fila in resultados:
             print(fila)
+        time.sleep(5)
 
     def modificarNivel(self) -> None:
         system('cls')
