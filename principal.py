@@ -1,9 +1,11 @@
 from conexion import Conexion
+from os import system
 from personaje import Personaje
 from arma import Arma
 from raza import Raza
 from habilidad import Habilidad
 from poder import Poder
+from mostrPersonaje import listaPersonaje
 
 Conexion.getConnection()
 
@@ -14,7 +16,7 @@ Habilidad().crearHabilidad()
 Raza().crearRaza()
 Personaje().crearPj()
 Arma().crearArma()
-mostrPersonaje().crearTabla()
+listaPersonaje().crearTabla()
 
 
 Habilidad().elegirHabilidad()
