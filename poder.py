@@ -2,6 +2,8 @@ import pymysql
 from conexion import Conexion
 from os import system
 import time
+from beautifultable import BeautifulTable
+from personaje import Personaje
 
 class Poder():
     def __init__(self) -> None:
@@ -27,15 +29,57 @@ class Poder():
 
     def elegirPoder(self) -> None:
         system('cls')
-        id = input('Indique el poder a elegir: ')
-        idpj = input('Indique el id del personaje: ')
+        sql = "SELECT * FROM poder"
+        self.mysql.cursor.execute(sql)
+        resultados = self.mysql.cursor.fetchall()
+        table = BeautifulTable()
+        table.columns.header = ['ID', 'Nombre', 'Descripcion']
+        for fila in resultados:
+            table.rows.append(fila)
+        print(table)
+        id = input('Indique el id del poder a elegir: ')
+        while not id.isdigit():
+            id = input('Error, Indique el id del poder a agregar: ')
+        sql = "SELECT * FROM poder WHERE idPoder = %s"
+        self.mysql.cursor.execute(sql,int(id))
+        result = self.mysql.cursor.fetchone()
+        if result:
+            sql = "UPDATE `personaje` SET idPoder=%s WHERE `idPersonaje`=%s"
+            self.mysql.cursor.execute(sql, (int(id), Personaje.idpj))
+            self.mysql.connection.commit()
+        else:
+            print('ID Invalido')
+            Poder().elegirPoder()
+            time.sleep(2)
+
+    def modificarPoder(self) -> None:
+        system('cls')
+        sql = """SELECT P.idPersonaje, P.nombrePersonaje, PO.nombre FROM PERSONAJE P 
+        INNER JOIN Poder PO ON P.idPoder = PO.idPoder"""
+        self.mysql.cursor.execute(sql)
+        resultados = self.mysql.cursor.fetchall()
+        table = BeautifulTable()
+        table.columns.header = ['ID', 'Nombre', 'Nombre Poder']
+        for fila in resultados:
+            table.rows.append(fila)
+        print(table)
+        id = input('Indique el id del poder a modificar: ')
+        sql = "SELECT * FROM PODER"
+        self.mysql.cursor.execute(sql)
+        resultados = self.mysql.cursor.fetchall()
+        table = BeautifulTable()
+        table.columns.header = ['ID', 'Nombre', 'Descripcion']
+        for fila in resultados:
+            table.rows.append(fila)
+        print(table)
+        id = input('Indique el id del poder a agregar: ')
         sql = "UPDATE `personaje` SET idPoder=%s WHERE `idPersonaje`=%s"
-        self.mysql.cursor.execute(sql, (int(id), int(idpj)))
+        self.mysql.cursor.execute(sql, (int(id), int(id)))
         self.mysql.connection.commit()
         registrosModificados = self.mysql.cursor.rowcount
         print(f'Registros modificados: {registrosModificados}')
-        sql = "SELECT * FROM `personaje` WHERE `idPersonaje`=%s"
-        self.mysql.cursor.execute(sql, (idpj))
+        sql = "SELECT nombrePersonaje, nivel, estado, idPoder FROM `personaje` WHERE `idPersonaje`=%s"
+        self.mysql.cursor.execute(sql, (int(id)))
         result = self.mysql.cursor.fetchone()
         print(result)
         time.sleep(5)
