@@ -80,7 +80,7 @@ while Usuario().idGM != 0 and Usuario().idJugador == 0:
     table1.columns.alignment = BeautifulTable.ALIGN_LEFT
     system('cls')
     i = input(f'{table1}\n> ')
-    if not i.isdigit() or int(i) < 1 or int(i) > 14:
+    if not i.isdigit() or int(i) < 1 or int(i) > 15:
         system('cls')
         i = input(f'{table1}\n> ')
     
