@@ -1,7 +1,7 @@
 DROP DATABASE rol;
 CREATE DATABASE IF NOT EXISTS rol;
 USE ROL;
-
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
 
 CREATE TABLE Jugador (
     idJugador INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,8 +11,8 @@ CREATE TABLE Jugador (
 
 CREATE TABLE GameMaster (
     idGM INT AUTO_INCREMENT PRIMARY KEY,
-    pwd VARCHAR(25) NOT NULL,
-    nombre VARCHAR(25) NOT NULL
+    nombre VARCHAR(25) NOT NULL,
+    pwd VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE Raza(
@@ -30,9 +30,7 @@ CREATE TABLE Habilidad (
 CREATE TABLE Equipo (
     idEquipo INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(25) NOT NULL,
-    descripcion VARCHAR(255) NOT NULL,
-    tipo VARCHAR(25) NOT NULL,
-    posicion VARCHAR(25) NOT NULL
+    descripcion VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Poder (
@@ -69,3 +67,5 @@ CREATE TABLE Personaje (
     FOREIGN KEY (idPoder) REFERENCES Poder(idPoder),
     FOREIGN KEY (idRaza) REFERENCES Raza(idRaza)
 );
+
+INSERT INTO GameMaster(nombre, pwd) VALUES ('admin', 'admin')
