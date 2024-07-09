@@ -85,4 +85,4 @@ class Arma():
         self.mysql.cursor.execute(sql, (int(id)))
         result = self.mysql.cursor.fetchone()
         print(result)
-        time.sleep(5)
+        time.sleep(3)
