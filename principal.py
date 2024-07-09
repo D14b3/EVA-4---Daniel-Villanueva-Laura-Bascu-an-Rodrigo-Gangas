@@ -14,6 +14,7 @@ Habilidad().crearHabilidad()
 Raza().crearRaza()
 Personaje().crearPj()
 Arma().crearArma()
+mostrPersonaje().crearTabla()
 
 
 Habilidad().elegirHabilidad()
