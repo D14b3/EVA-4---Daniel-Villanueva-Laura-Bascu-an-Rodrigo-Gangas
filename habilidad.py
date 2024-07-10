@@ -73,15 +73,14 @@ class Habilidad():
                 sql = "UPDATE `personaje` SET idHabilidad2=%s WHERE `idPersonaje`=%s"
                 self.mysql.cursor.execute(sql, (int(id2), Personaje.idpj))
                 self.mysql.connection.commit()
-                time.sleep(5)
             else:
                 print('ID Invalido, se reinicia la seleccion de habilidades.')
-                Habilidad().elegirHabilidad()
                 time.sleep(2)
+                Habilidad().elegirHabilidad()
         else:
             print('ID Invalido')
-            Habilidad().elegirHabilidad()
             time.sleep(2)
+            Habilidad().elegirHabilidad()
 
 
     def modificarHabilidad1(self) -> None:

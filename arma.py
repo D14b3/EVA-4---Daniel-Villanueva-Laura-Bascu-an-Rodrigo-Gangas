@@ -50,9 +50,9 @@ class Arma():
             sql = "UPDATE `personaje` SET idArma=%s WHERE `idPersonaje`=%s"
             self.mysql.cursor.execute(sql, (int(idarma), Personaje.idpj))
             self.mysql.connection.commit()
-            time.sleep(2)
         else:
             print('ID Invalido')
+            time.sleep(2)
             Arma().elegirArma()
 
     def modificarArma(self) -> None:

@@ -46,6 +46,7 @@ class Personaje():
         Poder().elegirPoder()
         Habilidad().elegirHabilidad()
         Equipo().elegirEquipo()
+        Personaje().mostrarPjs()
         
 
 

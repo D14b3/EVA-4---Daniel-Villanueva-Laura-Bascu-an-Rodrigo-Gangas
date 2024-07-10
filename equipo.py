@@ -50,6 +50,7 @@ class Equipo():
             time.sleep(2)
         else:
             print('ID Invalido')
+            time.sleep(5)
             Equipo().elegirEquipo()
 
     

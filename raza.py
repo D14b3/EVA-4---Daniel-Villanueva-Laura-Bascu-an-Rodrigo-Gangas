@@ -25,7 +25,7 @@ class Raza():
         self.mysql.cursor.execute(sql, (nombre))
         result = self.mysql.cursor.fetchone()
         print(result)
-        time.sleep(3)
+        time.sleep(5)
 
     def elegirRaza(self) -> None:
         system('cls')

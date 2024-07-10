@@ -48,9 +48,9 @@ class Poder():
             self.mysql.cursor.execute(sql, (int(id), Personaje.idpj))
             self.mysql.connection.commit()
         else:
-            print('ID Invalido')
-            Poder().elegirPoder()
+            print('ID Invalido')            
             time.sleep(2)
+            Poder().elegirPoder()
 
     def modificarPoder(self) -> None:
         system('cls')
